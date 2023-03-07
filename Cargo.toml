@@ -1,0 +1,24 @@
+[package]
+name = "worker-websocket"
+version = "0.0.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+
+[dependencies]
+worker = { git = "https://github.com/SebastiaanYN/workers-rs", branch = "http" }
+serde_json = "1"
+
+console_error_panic_hook = "0.1.1"
+serde = "1.0.144"
+http-range-header = "0.3.0"
+tower-service = {verion = "0.3.1"}
+axum = {verion = "0.6.1",  default-features = false, features = ["form", "json", "matched-path", "query", "original-uri", "tower-log"] }
+futures-util = "0.3.26"
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
